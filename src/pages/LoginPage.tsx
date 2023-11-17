@@ -9,6 +9,7 @@ function LoginPage() {
     const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
+    const [errorMsg, setErrorMsg] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -30,6 +31,17 @@ function LoginPage() {
     };
 
     const onLoginClick = async (email: string, password: string) => {
+        if (!isEmailValid) {
+            setErrorMsg('올바른 이메일 형식이 아닙니다.');
+            setIsPending(false);
+            return;
+        } else if (!isPasswordValid) {
+            setErrorMsg('비밀번호는 영문, 숫자, 특수문자 포함 8자에서 16자 사이입니다.');
+            setIsPending(false);
+            return;
+        }
+
+
         const response = await loginApi(email, password);
     
         if (response.status === 200) {
@@ -40,6 +52,7 @@ function LoginPage() {
 
             navigate('/');
         } else {
+            setErrorMsg(response.data.message);
             setIsPending(false);
         }
     }
@@ -105,10 +118,16 @@ function LoginPage() {
                         </div>
                     </div>
 
+                    {errorMsg != '' && (
+                        <p className="mt-10 text-xs text-red-500">
+                            {errorMsg}
+                        </p>
+                    )}
+
                     <div>
                         {isPending ? (
                             <button
-                                type="submit"
+                                type="button"
                                 disabled
                                 className="flex w-full justify-center rounded-md bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm"
                             >
@@ -119,8 +138,8 @@ function LoginPage() {
                             </button>
                         ) : (
                             <button
-                                type="submit"
-                                disabled={!isEmailValid || !isPasswordValid}
+                                type="button"
+                                disabled={!email || !password}
                                 onClick={async () => {
                                     setIsPending(true);
                                     onLoginClick(email, password);
