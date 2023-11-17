@@ -1,69 +1,281 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Pretendard-Bold';
+  src: url('assets/fonts/Pretendard-Bold.woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-SemiBold';
+  src: url('assets/fonts/Pretendard-SemiBold.woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Medium';
+  src: url('assets/fonts/Pretendard-Medium.woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('assets/fonts/Pretendard-Regular.woff');
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  font-style: normal;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer components {
+  .h1 {
+    font-family: 'Pretendard-Semibold';
+    font-size: 26px;
+    line-height: 120%;
+    letter-spacing: -0.52px;
+    color: #252525;
   }
-  a:hover {
-    color: #747bff;
+  .login-h1 {
+    font-family: 'Pretendard-Semibold';
+    font-size: 26px;
+    line-height: 120%;
+    letter-spacing: -0.52px;
+    color: #252525;
+    font-weight: 600;
   }
-  button {
-    background-color: #f9f9f9;
+  .login-color {
+    color: #ff5519;
+  }
+
+  .h2 {
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -0.4px;
+    color: #222222;
+  }
+
+  .h3 {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: -0.36px;
+    color: #222222;
+  }
+
+  .h3-m {
+    font-family: 'Pretendard-Medium';
+    font-size: 18px;
+    line-height: 135%;
+    letter-spacing: -0.36px;
+    color: #222222;
+  }
+
+  .body1 {
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: -0.32px;
+    color: #909090;
+  }
+  .bg1 {
+    background-color: #fbfbfb;
+  }
+  .Wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    height: 60px;
+  }
+
+  .body2 {
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: -0.28px;
+    color: #909090;
+  }
+
+  .p {
+    font-family: 'Pretendard-Regular';
+    font-size: 13px;
+    line-height: 120%;
+    letter-spacing: -0.26px;
+    color: #909090;
+  }
+  .email {
+    font-family: 'Pretendard-Regular';
+    font-size: 13px;
+    line-height: 120%;
+    letter-spacing: -0.26px;
+    color: #bdbdbd;
+  }
+  .email-input {
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: -0.32px;
+    color: #222222;
+  }
+  .phone-input {
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: -0.32px;
+    color: #222222;
+  }
+  .small {
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: -0.24px;
+    color: #757575;
+  }
+
+  .btn {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #ff5519;
+  }
+
+  .btn2 {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #6f6f6f;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .btn3 {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #ffffff;
+    background-color: #ff5519;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .birthborder {
+    border-color: rgb(0, 0, 0);
+  }
+  .btnconfirm {
+    background-color: #ff5519;
+    border-radius: 16px;
+  }
+  .nbtnconfirm {
+    color: #bdbdbd;
+    background-color: #f4f4f4;
+    border-radius: 16px;
+  }
+  .moreinfobtn {
+    border-radius: 1500px;
+    border: 0.5px solid var(--Whtie_Outline, #f3f2f8);
+    background: var(--black-2, #fbfbfb);
+
+    /* Shadow_04 */
+    box-shadow: 0px 0px 15px 0px rgba(190, 202, 222, 0.1);
+  }
+  .selectedmoreinfobtn {
+    border-radius: 1500px;
+    background: var(--key-100, #ff5519);
+    color:white;
+    /* Shadow_04 */
+    box-shadow: 0px 0px 15px 0px rgba(190, 202, 222, 0.1);
+  }
+
+  .confirmbtn {
+    border-radius: 16px;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #bdbdbd;
+    background-color: #f4f4f4;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .verifybtn {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #bdbdbd;
+
+    border-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-left: 10px;
+    height: 28px;
+    width: 82px;
+  }
+  .kakaobtn {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #000000;
+    background-color: #fbe93d;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .applebtn {
+    font-family: 'Apple SD Gothic Neo';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.32px;
+    color: #ffffff;
+    background-color: #3d3d3d;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-small {
+    font-family: 'Pretendard-Medium';
+    font-size: 14px;
+    line-height: 120%;
+    color: #bdbdbd;
+    text-align: center;
+  }
+
+  .filter {
+    font-family: 'Pretendard-Medium';
+    font-size: 16px;
+    line-height: 126%;
+    color: #6f6f6f;
+    text-align: center;
+  }
+
+  .badge {
+    font-family: 'Pretendard-Regular';
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: -0.22px;
+    color: #ff5519;
+    text-align: center;
+  }
+
+  .shw {
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .height-layout {
+    height: calc(
+      100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0)
+    );
+  }
+  
+  @supports (-webkit-touch-callout: none) {
+    .height-layout {
+      height: -webkit-fill-available;
+    }
   }
 }
