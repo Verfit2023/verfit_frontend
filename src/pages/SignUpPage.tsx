@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginApi } from "../apis/authApi";
-import { setCookie } from "../commons/cookie";
+import { signUpApi } from "../apis/authApi";
 
-function LoginPage() {
+function SignUpPage() {
+    const [nickname, setNickname] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [isNicknameValid, setIsNicknameValid] = useState<boolean>(false);
     const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
+    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
     const [errorMsg, setErrorMsg] = useState<string>('');
 
     const navigate = useNavigate();
 
+
+    const onNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newNickname = e.target.value;
+        setNickname(newNickname);
+    
+        const nicknamePattern = /^[a-zA-Z가-힣0-9]{2,8}$/;
+        setIsNicknameValid(nicknamePattern.test(newNickname));
+    };
 
     const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newEmail = e.target.value;
@@ -30,25 +41,35 @@ function LoginPage() {
         setIsPasswordValid(passwordPattern.test(newPassword));
     };
 
-    const onLoginClick = async (email: string, password: string) => {
-        if (!isEmailValid) {
-            setErrorMsg('올바른 이메일 형식이 아닙니다.');
+    const onConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newConfirmPassword = e.target.value;
+        setConfirmPassword(newConfirmPassword);
+    
+        setIsConfirmPasswordValid(password === newConfirmPassword);
+    };
+
+    const onSignUpClick = async (nickname:string, email: string, password: string) => {
+        if (!isNicknameValid) {
+            setErrorMsg('닉네임은 한글, 영문, 숫자만 사용 가능하며, 2자에서 8자 사이로 입력해주세요.');
+            setIsPending(false);
+            return;
+        }  else if (!isEmailValid) {
+            setErrorMsg('올바른 이메일 형식으로 입력해주세요.');
             setIsPending(false);
             return;
         } else if (!isPasswordValid) {
-            setErrorMsg('비밀번호는 영문, 숫자, 특수문자 포함 8자에서 16자 사이입니다.');
+            setErrorMsg('비밀번호는 영문, 숫자, 특수문자를 포함하여 8자에서 16자 사이로 입력해주세요.');
+            setIsPending(false);
+            return;
+        } else if (!isConfirmPasswordValid) {
+            setErrorMsg('비밀번호가 일치하지 않습니다.');
             setIsPending(false);
             return;
         }
 
-        const response = await loginApi(email, password);
+        const response = await signUpApi(nickname, email, password);
         if (response.status === 200) {
-            const data = response.data;
-
-            setCookie("accessToken", data.accessToken);
-            setCookie("refreshToken", data.refreshToken);
-
-            navigate('/');
+            navigate('/signup/success');
         } else {
             setErrorMsg(response.data.message);
             setIsPending(false);
@@ -70,6 +91,29 @@ function LoginPage() {
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-4" action="#" method="POST">
+                    <div>
+                        <label htmlFor="nickname" className="block text-sm font-medium leading-6 text-gray-900">
+                            Nickname
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="nickname"
+                                name="nickname"
+                                type="nickname"
+                                autoComplete="nickname"
+                                placeholder="닉네임을 입력하세요"
+                                required
+                                value={nickname}
+                                onChange={onNicknameChange}
+                                className={
+                                    `block w-full rounded-md border-0 py-2 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset 
+                                    ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+                                    ${isNicknameValid ? 'focus:ring-green-500' : 'focus:ring-red-500'} sm:text-sm sm:leading-6`
+                                }
+                            />
+                        </div>
+                    </div>
+
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                             Email address
@@ -102,7 +146,6 @@ function LoginPage() {
                                 id="password"
                                 name="password"
                                 type="password"
-                                autoComplete="current-password"
                                 placeholder="비밀번호를 입력하세요"
                                 required
                                 value={password}
@@ -111,6 +154,28 @@ function LoginPage() {
                                     `block w-full rounded-md border-0 py-2 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset 
                                     ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
                                     ${isPasswordValid ? 'focus:ring-green-500' : 'focus:ring-red-500'} sm:text-sm sm:leading-6`
+                                }
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                            Confirm Password
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="confirm password"
+                                name="confirm password"
+                                type="password"
+                                placeholder="비밀번호를 다시 입력하세요"
+                                required
+                                value={confirmPassword}
+                                onChange={onConfirmPasswordChange}
+                                className={
+                                    `block w-full rounded-md border-0 py-2 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset 
+                                    ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+                                    ${isConfirmPasswordValid ? 'focus:ring-green-500' : 'focus:ring-red-500'} sm:text-sm sm:leading-6`
                                 }
                             />
                         </div>
@@ -137,23 +202,23 @@ function LoginPage() {
                         ) : (
                             <button
                                 type="button"
-                                disabled={!email || !password}
+                                disabled={!nickname || !email || !password || !confirmPassword}
                                 onClick={async () => {
                                     setIsPending(true);
-                                    onLoginClick(email, password);
+                                    onSignUpClick(nickname, email, password);
                                 }}
                                 className="flex w-full justify-center rounded-md bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 disabled:bg-gray-400"
                             >
-                                로그인
+                                회원가입
                             </button>
                         )}
                     </div>
                 </form>
 
                 <p className="mt-10 text-center text-sm text-gray-500">
-                    아직 계정이 없나요?{' '}
-                    <a href="/signup" className="font-semibold leading-6 text-sky-500 hover:text-sky-400">
-                        회원가입
+                    이미 계정이 있나요?{' '}
+                    <a href="/login" className="font-semibold leading-6 text-sky-500 hover:text-sky-400">
+                        로그인
                     </a>
                 </p>
             </div>
@@ -162,4 +227,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default SignUpPage;

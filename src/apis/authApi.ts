@@ -1,7 +1,16 @@
 import { apiPost } from ".";
 
+const BASE_URL = "/accounts";
+
 async function loginApi(email: string, password: string) {
-    return await apiPost('/login', { email, password });
+    return await apiPost(BASE_URL + '/login', { email, password });
 }
 
-export { loginApi }
+async function signUpApi(nickname: string, email: string, password: string) {
+    return await apiPost(BASE_URL + '/signup', { nickname, email, password });
+}
+
+export {
+    loginApi,
+    signUpApi,
+}
