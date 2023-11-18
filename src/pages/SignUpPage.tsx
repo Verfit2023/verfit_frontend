@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUpApi } from "../apis/authApi";
+import { signupApi } from "../apis/authApi";
 
-function SignUpPage() {
+function SignupPage() {
     const [nickname, setNickname] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -48,7 +48,7 @@ function SignUpPage() {
         setIsConfirmPasswordValid(password === newConfirmPassword);
     };
 
-    const onSignUpClick = async (nickname:string, email: string, password: string) => {
+    const onSignupClick = async (nickname:string, email: string, password: string) => {
         if (!isNicknameValid) {
             setErrorMsg('닉네임은 한글, 영문, 숫자만 사용 가능하며, 2자에서 8자 사이로 입력해주세요.');
             setIsPending(false);
@@ -67,9 +67,9 @@ function SignUpPage() {
             return;
         }
 
-        const response = await signUpApi(nickname, email, password);
+        const response = await signupApi(nickname, email, password);
         if (response.status === 200) {
-            navigate('/signup/success');
+            navigate('/signup/complete');
         } else {
             setErrorMsg(response.data.message);
             setIsPending(false);
@@ -205,7 +205,7 @@ function SignUpPage() {
                                 disabled={!nickname || !email || !password || !confirmPassword}
                                 onClick={async () => {
                                     setIsPending(true);
-                                    onSignUpClick(nickname, email, password);
+                                    onSignupClick(nickname, email, password);
                                 }}
                                 className="flex w-full justify-center rounded-md bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 disabled:bg-gray-400"
                             >
@@ -227,4 +227,4 @@ function SignUpPage() {
     );
 }
 
-export default SignUpPage;
+export default SignupPage;

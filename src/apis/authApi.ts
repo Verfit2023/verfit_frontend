@@ -6,11 +6,11 @@ async function loginApi(email: string, password: string) {
     return await apiPost(BASE_URL + '/login', { email, password });
 }
 
-async function signUpApi(nickname: string, email: string, password: string) {
+async function signupApi(nickname: string, email: string, password: string) {
     return await apiPost(BASE_URL + '/signup', { nickname, email, password });
 }
 
 export {
     loginApi,
-    signUpApi,
+    signupApi,
 }
