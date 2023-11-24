@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 
-interface detailStoreType {
+interface userStoreType {
   isLoggedInStore: boolean,
   nicknameStore: string,
   setIsLoggedInStore: (isLoggedIn: boolean) => void,
   setNicknameStore: (nickname: string) => void,
 }
 
-export const useDetailStore = create<detailStoreType>(set => ({
+export const useUserStore = create<userStoreType>(set => ({
   isLoggedInStore: false,
   nicknameStore: '',
   setIsLoggedInStore: (isLoggedIn) => {
