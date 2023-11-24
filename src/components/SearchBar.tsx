@@ -4,20 +4,21 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 
 const tabOptions = [
+    '전체',
     '제목',
     '교재',
 ];
 
 function SearchBar() {
-  const [selected, setSelected] = useState('교재');
+  const [selected, setSelected] = useState('전체');
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <div className="flex flex-row justify-between w-3/4 mx-auto border-gray-300 border rounded-md py-1 px-1 text-md">
+    <div className="flex flex-row justify-between w-3/4 mx-auto border-gray-300 border rounded-md py-1 px-1 text-md my-6">
         <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
                 <div className="relative">
-                    <Listbox.Button className="relative w-28 cursor-default rounded-3xl bg-white border-2 border-sky-500 py-1.5 pl-3 pr-10 text-left text-sky-500 pr-3">
+                    <Listbox.Button className="relative w-24 sm:w-28 cursor-default rounded-3xl bg-white border-2 border-sky-500 py-1.5 pl-3 text-left text-sky-500 pr-3">
                         <span className="h-5 w-5 flex-shrink-0">
                             {selected}
                         </span>
@@ -59,10 +60,10 @@ function SearchBar() {
         </Listbox>
         <input
             type="text"
-            placeholder="Search the workbook you want"
+            placeholder="Search workbooks you want"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="basis-5/6 focus:outline-none"
+            className="basis-5/6 focus:outline-none pl-2"
         />
         <button type="button" className="rounded-xl right-2">
             <MagnifyingGlassIcon className="h-5 w-5 text-gray-900 mx-3" />

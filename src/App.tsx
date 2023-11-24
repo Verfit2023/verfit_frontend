@@ -4,6 +4,8 @@ import SignupPage from './pages/SignupPage';
 import SignupCompletePage from './pages/SignupCompletePage';
 import HomePage from './pages/HomePage';
 import MyPage from './pages/MyPage';
+import GeneratePage from './pages/GeneratePage';
+import WorkbookPage from './pages/WorkbookPage';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path='/signup/complete' element={<SignupCompletePage />} />
           <Route path='/' element={<HomePage />} />
           <Route path='/mypage' element={<MyPage />} />
+          <Route path='/generate' element={<GeneratePage />} />
+          <Route path='/workbook' element={<WorkbookPage />} />
         </Routes>
       </BrowserRouter>
     </div>
