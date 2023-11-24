@@ -1,5 +1,7 @@
 import { useState } from "react";
 import timeAgo from "../utils/timeAgo";
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
 
 function HomePage() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -26,25 +28,10 @@ function HomePage() {
 
     return (
         <div className="flex flex-col min-h-full">
-            <header className="bg-gray-800 text-white py-3 px-6 flex justify-between items-center">
-                <h1 className="text-lg font-semibold">Verfit | Over and Over, Fit Your Curiosity.</h1>
-                <div className="flex items-center space-x-4">
-                    <div className="text-gray-200">닉네임</div>
-                </div>
-            </header>
+            <Header />
 
             <div className="p-6">
-                <h2 className="text-lg font-semibold mb-4">문제집 검색</h2>
-                <div className="flex flex-row justify-center">
-                    <input
-                        type="text"
-                        placeholder="문제집 검색"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="basis-1/2 border-gray-300 border rounded-l-sm px-4 py-2"
-                    />
-                    <button type="button" className="rounded-r-sm bg-sky-500 text-white px-4 hover:bg-sky-400">검색</button>
-                </div>
+                <SearchBar />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 px-6 py-6 bg-gray-100">
