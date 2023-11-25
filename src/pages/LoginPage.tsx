@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginApi } from "../apis/authApi";
 import { setCookie } from "../commons/cookie";
 
@@ -60,8 +60,10 @@ function LoginPage() {
         <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-5xl font-semibold leading-9 tracking-tight text-gray-900">
-                    VERFIT
+                <h2 className="mt-10 text-center text-5xl font-semibold leading-9 tracking-tight text-sky-500">
+                    <Link to="/">
+                        VERFIT
+                    </Link>
                 </h2>
                 <h3 className="mt-1 text-center text-xl font-regular tracking-tight text-gray-700">
                     Ready to fit your curiosity?

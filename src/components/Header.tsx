@@ -10,7 +10,7 @@ const Header = () => {
     const { isLoggedIn, nickname } = useUserStore(state => ({ isLoggedIn: state.isLoggedInStore, nickname: state.nicknameStore }));
   
     return (
-        <div className="sticky top-0 w-full px-28 py-4 flex justify-between items-center bg-white">
+        <div className="sticky top-0 w-3/4 mx-auto py-4 flex justify-between items-center bg-white">
             <div className="font-bold text-3xl text-sky-500">
                 <Link to="/">Verfit</Link>
             </div>
