@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { useNavigate } from 'react-router-dom';
 
 
 const tabOptions = [
@@ -12,6 +13,8 @@ const tabOptions = [
 function SearchBar() {
   const [selected, setSelected] = useState('전체');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-row justify-between w-3/4 mx-auto border-gray-300 border rounded-md py-1 px-1 text-md my-6">
@@ -65,7 +68,11 @@ function SearchBar() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="basis-5/6 focus:outline-none pl-2 bg-transparent"
         />
-        <button type="button" className="rounded-xl right-2">
+        <button
+            type="button"
+            onClick={() => navigate(`/workbook?type=${selected}&keyword=${searchQuery}`)}
+            className="rounded-xl right-2"
+        >
             <MagnifyingGlassIcon className="h-5 w-5 text-gray-900 mx-3" />
         </button>
     </div>

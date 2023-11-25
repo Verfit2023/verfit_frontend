@@ -2,8 +2,14 @@ import timeAgo from "../utils/timeAgo";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { BookOpenIcon } from '@heroicons/react/24/outline';
+import { useSearchParams } from "react-router-dom";
 
 function WorkbookPage() {
+    const [searchParams] = useSearchParams();
+
+    const type = searchParams.get('type');
+    const keyword = searchParams.get('keyword');
+
     const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
 
     const mockProblemSets = [
@@ -31,7 +37,7 @@ function WorkbookPage() {
             <div className="flex flex-row w-3/4 mx-auto items-center gap-3">
                 <BookOpenIcon className="h-6 w-6" />
                 <div className="text-2xl font-semibold">
-                    검색된 문제집
+                    {keyword == ''? '전체 문제집' : '검색된 문제집'}
                 </div>
             </div>
             <div className="w-3/4 h-px bg-gray-200 mt-2 mb-7 mx-auto" />
