@@ -1,55 +1,52 @@
-import { useState } from "react";
-import timeAgo from "../utils/timeAgo";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 
 function HomePage() {
-    const [searchQuery, setSearchQuery] = useState('');
-
-    const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
-
-    const mockProblemSets = [
-        { id: 1, title: "재료 공학 midterm 대비", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2022-10-15T12:00:00Z" },
-        { id: 2, title: "알고리즘 분석", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-10-15T12:00:00Z" },
-        { id: 3, title: "컴퓨터 네트워크", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-10-20T12:00:00Z" },
-        { id: 4, title: "시스템 프로그래밍", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-2T12:00:00Z" },
-        { id: 5, title: "컴퓨터 구조론", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-10T12:00:00Z" },
-        { id: 6, title: "선대", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-17T12:00:00Z" },
-        { id: 7, title: "확률과 통계", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T12:00:00Z" },
-        { id: 8, title: "이산구조", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:00:00Z" },
-        { id: 9, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-        { id: 10, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-        { id: 11, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-        { id: 12, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-        { id: 13, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-        { id: 14, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-        { id: 15, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    ];
 
     return (
-        <div className="flex flex-col min-h-full">
+        <div className="flex flex-col min-h-full bg-white">
             <Header />
-
-            <div className="p-6">
-                <SearchBar />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 px-6 py-6 bg-gray-100">
-                {mockProblemSets.map((problemSet) => (
+            <div className="relative isolate px-6 pt-14 lg:px-8">
+                <div
+                className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+                aria-hidden="true"
+                >
                     <div
-                        key={problemSet.id}
-                        className="bg-white rounded-md shadow-md flex flex-col hover:scale-105"
-                    >
-                        <img src={problemSet.img} alt="문제집 이미지" className="h-40 rounded-t-md" />
-                        <div className="px-3 py-2">
-                            <h3 className="text-lg font-semibold">
-                                {problemSet.title}
-                            </h3>
-                            <p className="text-md text-gray-600 mb-2">{problemSet.description}</p>
-                            <p className="text-sm text-gray-400">{timeAgo(problemSet.createdAt)}</p>
+                        className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#f094ba] to-[#75d2f7] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                        style={{
+                        clipPath:
+                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 40.7% 22%, 72.5% 32.5%, 60.2% 62.4%, 82.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 29.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                    />
+                </div>
+                <div className="mx-auto w-3/4 py-32">
+                    <div className="text-center">
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                            Find workbooks you need
+                        </h1>
+                        <p className="mt-6 text-lg leading-8 text-gray-600">
+                            Can't you find the workbook you need? Then try making it yourself.{' '}
+                            <a href="/generate" className="font-semibold text-sky-500">
+                                Try it <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </p>
+                        <div className="my-16">
+                            <SearchBar />
                         </div>
                     </div>
-                ))}
+                </div>
+                <div
+                    className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#f094ba] to-[#75d2f7] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                        style={{
+                        clipPath:
+                            'polygon(74.1% 44.1%, 90% 61.6%, 97.5% 56.9%, 25.5% 4.1%, 80.7% 2%, 42.5% 52.5%, 60.2% 62.4%, 32.4% 68.1%, 47.5% 68.3%, 90.2% 34.5%, 97.5% 56.7%, 0.1% 64.9%, 17.9% 100%, 37.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );
