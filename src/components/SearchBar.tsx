@@ -17,7 +17,7 @@ function SearchBar() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-row justify-between w-3/4 mx-auto border-gray-300 border rounded-md py-1 px-1 text-md my-6">
+    <div className="flex flex-row justify-between w-3/4 mx-auto border-gray-300 border rounded-md py-1 px-1 text-base my-6">
         <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
                 <div className="relative">

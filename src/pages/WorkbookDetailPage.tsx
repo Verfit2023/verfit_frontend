@@ -46,12 +46,13 @@ function WorkbookDetailPage() {
                     <img src={mockWorkbook.img} className="h-16 w-16 rounded-full mr-4" />
                     <div className="font-medium">
                         <div className="text-lg">{mockWorkbook.title}</div>
-                        <div className="flex flex-row gap-10 test-md">
+                        <div className="flex flex-row gap-10 text-base">
                             <span>원본 교재: {mockWorkbook.textbook}</span>
                             <span>문제 구성: {mockWorkbook.type}</span>
                             <span>범위: {mockWorkbook.range}</span>
                         </div>
                     </div>
+                    <button className="bg-sky-500 text-white text-base rounded-sm ml-auto mr-0 px-4 py-2">내 문제집에 추가</button>
                 </div>
                 {mockWorkbook.problems.map((x) => (
                     <Problem data={x} />

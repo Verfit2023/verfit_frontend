@@ -36,7 +36,7 @@ function MyPage() {
                     <img src={mockProfileImg} className="w-16 h-16 rounded-full" />
                     <div className="flex flex-col justify-center ml-4 font-medium">
                         <p className="text-lg">닉네임</p>
-                        <p className="text-md">한 줄 소개</p>
+                        <p className="text-base">한 줄 소개</p>
                     </div>
                 </div>
                 <div className="flex flex-row items-center gap-3 mb-3">
