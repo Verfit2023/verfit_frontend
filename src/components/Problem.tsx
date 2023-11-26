@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-function Problem(props: { data }) {
+interface DataType {
+    id: number,
+    problem: string,
+    answer: string,
+    explanation: string,
+}
+
+function Problem(props: { data: DataType }) {
     const [showAnswer, setShowAnswer] = useState(false);
 
     return (

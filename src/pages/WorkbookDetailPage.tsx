@@ -2,39 +2,39 @@ import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import Problem from '../components/Problem';
 
+const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
+
+const mockWorkbook = { 
+    title: "재료 공학 midterm 대비",
+    textbook: "Introduction to Algorithms",
+    range: "CH-3",
+    img: mockImg,
+    type: "서술형 3문제",
+    problems: [
+        {
+            id: 1,
+            problem: 'this is problem 1',
+            answer: 'this is answer 1',
+            explanation: 'this is explanation 1',
+        },
+        {
+            id: 2,
+            problem: 'this is problem 2',
+            answer: 'this is answer 2',
+            explanation: 'this is explanation 2',
+        },
+        {
+            id: 3,
+            problem: 'this is problem 3',
+            answer: 'this is answer 3',
+            explanation: 'this is explanation 3',
+        },
+    ]
+};
+
 function WorkbookDetailPage() {
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
-
-    const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
-
-    const mockWorkbook = { 
-        title: "재료 공학 midterm 대비",
-        textbook: "Introduction to Algorithms",
-        range: "CH-3",
-        img: mockImg,
-        type: "서술형 3문제",
-        problems: [
-            {
-                id: 1,
-                problem: 'this is problem 1',
-                answer: 'this is answer 1',
-                explanation: 'this is explanation 1',
-            },
-            {
-                id: 2,
-                problem: 'this is problem 2',
-                answer: 'this is answer 2',
-                explanation: 'this is explanation 2',
-            },
-            {
-                id: 3,
-                problem: 'this is problem 3',
-                answer: 'this is answer 3',
-                explanation: 'this is explanation 3',
-            },
-        ]
-    };
 
 
     return (

@@ -1,8 +1,8 @@
-import timeAgo from "../utils/timeAgo";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { BookOpenIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from "react-router-dom";
+import Workbook from "../components/Workbook";
 
 function WorkbookPage() {
     const [searchParams] = useSearchParams();
@@ -43,19 +43,7 @@ function WorkbookPage() {
             <div className="w-3/4 h-px bg-gray-200 mt-2 mb-7 mx-auto" />
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 w-3/4 mx-auto mb-7">
                 {mockProblemSets.map((problemSet) => (
-                    <div
-                        key={problemSet.id}
-                        className="bg-white rounded-xl shadow-sm shadow-gray-400 flex flex-row hover:scale-105 p-1 items-center"
-                    >
-                        <img src={problemSet.img} alt="문제집 이미지" className="h-24" />
-                        <div className="px-3 py-1">
-                            <h3 className="text-lg font-semibold">
-                                {problemSet.title}
-                            </h3>
-                            <p className="text-md text-gray-600 mt-0 mb-3">{problemSet.description}</p>
-                            <p className="text-sm text-gray-400">{timeAgo(problemSet.createdAt)}</p>
-                        </div>
-                    </div>
+                    <Workbook data={problemSet} />
                 ))}
             </div>
         </div>
