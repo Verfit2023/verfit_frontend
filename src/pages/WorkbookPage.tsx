@@ -3,6 +3,7 @@ import SearchBar from "../components/SearchBar";
 import { BookOpenIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from "react-router-dom";
 import Workbook from "../components/Workbook";
+import RecentViewBanner from "../components/RecentViewBanner";
 
 function WorkbookPage() {
     const [searchParams] = useSearchParams();
@@ -41,10 +42,15 @@ function WorkbookPage() {
                 </div>
             </div>
             <div className="w-3/4 h-px bg-gray-200 mt-2 mb-7 mx-auto" />
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 w-3/4 mx-auto mb-7">
-                {mockProblemSets.map((problemSet) => (
-                    <Workbook data={problemSet} />
-                ))}
+            <div className="flex flex-row w-3/4 mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full lg:w-3/4 mb-7">
+                    {mockProblemSets.map((problemSet) => (
+                        <Workbook data={problemSet} />
+                    ))}
+                </div>
+                <div className="hidden lg:flex lg:w-1/4">
+                    <RecentViewBanner />
+                </div>
             </div>
         </div>
     );

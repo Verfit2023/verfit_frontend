@@ -17,7 +17,7 @@ function Workbook(props: { data: DataType }) {
     const navigate = useNavigate();
 
     const onWorkbookClick = () => {
-        setRecentViewsStore(props.data.id);
+        setRecentViewsStore({id: props.data.id, img: props.data.img, title: props.data.title});
         navigate(`/workbook/${props.data.id}`)
     };
 
