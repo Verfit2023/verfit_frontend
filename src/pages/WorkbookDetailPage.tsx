@@ -43,8 +43,8 @@ function WorkbookDetailPage() {
             <div className="w-3/4 mx-auto">
                 <div className="text-xl font-medium leading-6 text-gray-900 mt-6">문제집</div>
                 <div className="flex flex-row items-center mt-10 py-4 my-7 border-y border-gray-200">
-                    <img src={mockWorkbook.img} className="h-12 w-12 rounded-full mr-4" />
-                    <div className="font-semibold">
+                    <img src={mockWorkbook.img} className="h-16 w-16 rounded-full mr-4" />
+                    <div className="font-medium">
                         <div className="text-lg">{mockWorkbook.title}</div>
                         <div className="flex flex-row gap-10 test-md">
                             <span>원본 교재: {mockWorkbook.textbook}</span>
