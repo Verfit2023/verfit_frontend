@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import Problem from '../components/Problem';
+import { BookmarkIcon } from '@heroicons/react/24/outline';
 
 const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
 
@@ -52,7 +53,9 @@ function WorkbookDetailPage() {
                             <span>범위: {mockWorkbook.range}</span>
                         </div>
                     </div>
-                    <button className="bg-sky-500 text-white text-base rounded-sm ml-auto mr-0 px-4 py-2">내 문제집에 추가</button>
+                    <button className="ml-auto mr-0 px-4 py-2">
+                        <BookmarkIcon className="h-6 w-6 fill-sky-500 hover:fill-sky-400" />
+                    </button>
                 </div>
                 {mockWorkbook.problems.map((x) => (
                     <Problem data={x} />

@@ -17,10 +17,10 @@ function Problem(props: { data: DataType }) {
                 <>
                     <div className="font-medium text-base">{props.data.answer}</div>
                     <div className="font-medium text-sm">{props.data.explanation}</div>
-                    <div onClick={() => setShowAnswer(false)} className="font-medium text-base text-sky-500">Hide Answer</div>
+                    <button onClick={() => setShowAnswer(false)} className="font-medium text-base text-sky-500 hover:text-sky-400">Hide Answer</button>
                 </>
             ) : (
-                <div onClick={() => setShowAnswer(true)} className="font-medium text-base text-sky-500">Show Answer</div>
+                <button onClick={() => setShowAnswer(true)} className="font-medium text-base text-sky-500 hover:text-sky-400">Show Answer</button>
             )}
         </div>
     )
