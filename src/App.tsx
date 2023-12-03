@@ -7,6 +7,7 @@ import MyPage from './pages/MyPage';
 import GeneratePage from './pages/GeneratePage';
 import WorkbookPage from './pages/WorkbookPage';
 import WorkbookDetailPage from './pages/WorkbookDetailPage';
+import GenerateCompletePage from './pages/GenerateCompletePage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/generate' element={<GeneratePage />} />
+          <Route path='/generate/complete' element={<GenerateCompletePage />} />
           <Route path='/workbook' element={<WorkbookPage />} />
           <Route path='/workbook/:id' element={<WorkbookDetailPage />} />
         </Routes>

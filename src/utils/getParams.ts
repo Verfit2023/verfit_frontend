@@ -9,4 +9,14 @@ function getParams (searchType: string | null, searchKeyword: string | null) {
     return qs.stringify(query, { arrayFormat: 'repeat' });
 }
 
-export default getParams;
+function getGenerateParams (workbookTitle: string, workbookSubject: string, workbookDescription: string) {
+    const query = {
+        title: workbookTitle,
+        subject: workbookSubject,
+        description: workbookDescription,
+    };
+
+    return qs.stringify(query, { arrayFormat: 'repeat' });
+}
+
+export { getParams, getGenerateParams };

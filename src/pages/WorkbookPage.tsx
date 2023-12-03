@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import Workbook from "../components/Workbook";
 import RecentViewBanner from "../components/RecentViewBanner";
 import { searchWorkbookApi } from '../apis/searchApi';
-import getParams from '../utils/getParams';
+import { getParams } from '../utils/getParams';
 
 const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
 
