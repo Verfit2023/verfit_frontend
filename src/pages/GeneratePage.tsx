@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CloudArrowUpIcon } from '@heroicons/react/24/solid';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
+import { makeQuestionApi, uploadFile } from '../apis/generation';
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -9,6 +10,7 @@ const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 function GeneratePage() {
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState(null);
+  const [type, setType] = useState(1);
 
   const navigate = useNavigate();
 
@@ -54,8 +56,32 @@ function GeneratePage() {
     }
   };
 
-  const onGenerateClick = () => {
-    console.log('File:', file);
+  const onGenerateClick = async () => {
+    if (file == null) {
+      alert("파일을 업로드해주세요.");
+      return;
+    }
+    if (type < 1 || type > 4) {
+      alert("잘못된 문제 유형입니다.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file); 
+
+    try {
+        const response = await uploadFile(formData);
+        const text = response.data.text;
+        if (text == "") {
+          alert("파일에 텍스트가 존재하지 않습니다.")
+          return;
+        }
+        const response2 = await makeQuestionApi(type, text);
+        console.log(response2);
+    } catch(e) {
+        alert("문제 생성 중 오류가 발생하였습니다. 다시 시도해주세요.");
+    }
+
   };
 
   return (
@@ -120,8 +146,10 @@ function GeneratePage() {
                       <div className="flex h-6 items-center">
                         <input
                           id="TF"
-                          name="TF"
-                          type="checkbox"
+                          name="type"
+                          type="radio"
+                          checked={type==1}
+                          onChange={() => setType(1)}
                           className="h-4 w-4 rounded border-gray-300 text-sky-500 focus:ring-sky-500"
                         />
                       </div>
@@ -135,8 +163,10 @@ function GeneratePage() {
                       <div className="flex h-6 items-center">
                         <input
                           id="Blank"
-                          name="Blank"
-                          type="checkbox"
+                          name="type"
+                          type="radio"
+                          checked={type==2}
+                          onChange={() => setType(2)}
                           className="h-4 w-4 rounded border-gray-300 text-sky-500 focus:ring-sky-500"
                         />
                       </div>
@@ -150,8 +180,10 @@ function GeneratePage() {
                       <div className="flex h-6 items-center">
                         <input
                           id="short"
-                          name="short"
-                          type="checkbox"
+                          name="type"
+                          type="radio"
+                          checked={type==3}
+                          onChange={() => setType(3)}
                           className="h-4 w-4 rounded border-gray-300 text-sky-500 focus:ring-sky-500"
                         />
                       </div>
@@ -165,8 +197,10 @@ function GeneratePage() {
                       <div className="flex h-6 items-center">
                         <input
                           id="descriptive"
-                          name="descriptive"
-                          type="checkbox"
+                          name="type"
+                          type="radio"
+                          checked={type==4}
+                          onChange={() => setType(4)}
                           className="h-4 w-4 rounded border-gray-300 text-sky-500 focus:ring-sky-500"
                         />
                       </div>
