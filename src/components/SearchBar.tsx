@@ -21,7 +21,7 @@ function SearchBar() {
         <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
                 <div className="relative">
-                    <Listbox.Button className="relative w-24 sm:w-28 cursor-default rounded-3xl border-2 border-sky-500 py-1.5 pl-3 text-left text-sky-500 pr-3">
+                    <Listbox.Button className="relative w-24 sm:w-28 cursor-default rounded-3xl border-2 border-sky-500 py-1.5 pl-3 text-left text-sky-500 pr-3 hover:border-sky-400 hover:text-sky-400">
                         <span className="h-5 w-5 flex-shrink-0">
                             {selected}
                         </span>

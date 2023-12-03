@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginApi } from "../apis/authApi";
 import { setCookie } from "../commons/cookie";
+import { useUserStore } from '../stores/userStore';
 
 function LoginPage() {
     const [email, setEmail] = useState<string>('');
@@ -10,6 +11,8 @@ function LoginPage() {
     const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
     const [errorMsg, setErrorMsg] = useState<string>('');
+
+    const { setIsLoggedInStore, setNicknameStore } = useUserStore(state => ({ setIsLoggedInStore: state.setIsLoggedInStore, setNicknameStore: state.setNicknameStore }));
 
     const navigate = useNavigate();
 
@@ -45,8 +48,9 @@ function LoginPage() {
         if (response.status === 200) {
             const data = response.data;
 
-            setCookie("accessToken", data.accessToken);
-            setCookie("refreshToken", data.refreshToken);
+            setCookie("accessToken", data.access_token);
+            setNicknameStore(data.nickname);
+            setIsLoggedInStore(true);
 
             navigate('/');
         } else {
@@ -60,7 +64,7 @@ function LoginPage() {
         <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-5xl font-semibold leading-9 tracking-tight text-sky-500">
+                <h2 className="mt-10 text-center text-5xl font-semibold leading-9 tracking-tight text-sky-500 hover:text-sky-400">
                     <Link to="/">
                         VERFIT
                     </Link>

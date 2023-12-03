@@ -26,14 +26,14 @@ const Header = () => {
                     <Link to="/workbook">전체 문제집</Link>
                 </div>
             </div>
-            <div className="hidden sm:flex sm:px-2 sm:items-center sm:gap-2">
+            <div className="hidden sm:flex sm:px-2 sm:items-center sm:gap-12">
                 {isLoggedIn ? (
                     <>
-                        <div className="font-semibold text-base text-black">
-                            {nickname}
+                        <div className="font-semibold text-base text-sky-500">
+                            <Link to="/mypage">{nickname}</Link>
                         </div>
                         <div className="font-semibold text-base text-black">
-                            Sign out
+                            <Link to="/">Sign out</Link>
                         </div>
                     </>
                 ) : (

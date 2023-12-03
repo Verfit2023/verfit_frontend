@@ -26,7 +26,7 @@ function HomePage() {
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
                             Can't you find the workbook you need? Then try making it yourself.{' '}
-                            <a href="/generate" className="font-semibold text-sky-500">
+                            <a href="/generate" className="font-semibold text-sky-500 hover:text-sky-400">
                                 Try it <span aria-hidden="true">&rarr;</span>
                             </a>
                         </p>

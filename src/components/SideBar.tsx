@@ -72,11 +72,11 @@ function SideBar(props: {open: boolean, setOpen: (value: boolean) => void}) {
                         <div className="relative px-8">
                             {isLoggedIn ? (
                                 <>
-                                    <div className="my-7 font-semibold text-xl text-black">
-                                        {nickname}
+                                    <div className="my-7 font-semibold text-xl text-sky-500">
+                                        <Link to="/mypage">{nickname}</Link>
                                     </div>
                                     <div className="my-7 font-semibold text-xl text-black">
-                                        Sign out
+                                        <Link to="/">Sign out</Link>
                                     </div>
                                 </>
                             ) : (
