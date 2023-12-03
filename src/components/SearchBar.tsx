@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const tabOptions = [
     '전체',
     '제목',
-    '교재',
+    '과목',
+    '설명',
 ];
 
 function SearchBar() {
