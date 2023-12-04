@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import Problem from '../components/Problem';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
-import { getWorkbookApi } from '../apis/workbookApi';
+import { getWorkbookApi, likeWorkbookApi } from '../apis/workbookApi';
 
 function WorkbookDetailPage() {
     const [title, setTitle] = useState('');
@@ -12,6 +12,8 @@ function WorkbookDetailPage() {
     const [createdAt, setCreatedAt] = useState('');
     const [problems, setProblems] = useState([]);
     const [summary, setSummary] = useState('');
+    const [isOwner, setIsOwner] = useState(false);
+    const [isFav, setIsFav] = useState(false);
 
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
@@ -28,6 +30,8 @@ function WorkbookDetailPage() {
             setProblems(problems);
             const summary = JSON.parse(data.summaries[0].text);
             setSummary(summary);
+            setIsOwner(response.data.isOwner);
+            setIsFav(response.data.isFav);
         } catch (e) {
             alert("정보를 가져올 수 없습니다.");
         }
@@ -36,6 +40,11 @@ function WorkbookDetailPage() {
     useEffect(() => {
         fetchData();
     }, [id])
+
+    const onLikeClick = async () => {
+        await likeWorkbookApi(parseInt(id));
+        setIsFav(!isFav);
+    }
 
 
     return (
@@ -52,8 +61,8 @@ function WorkbookDetailPage() {
                             <span>생성일: {createdAt}</span>
                         </div>
                     </div>
-                    <button className="ml-auto mr-0 px-4 py-2">
-                        <BookmarkIcon className="h-6 w-6 fill-sky-500 hover:fill-sky-400" />
+                    <button onClick={onLikeClick} className="ml-auto mr-0 px-4 py-2">
+                        <BookmarkIcon className={`h-6 w-6 ${isFav? 'fill-sky-500' : 'fill-white'}`} />
                     </button>
                 </div>
                 {summary}
