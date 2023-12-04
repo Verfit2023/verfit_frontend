@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Header from "../components/Header";
 import Problem from "../components/Problem";
-import { makeWorkbookApi, saveQuestionApi, saveSummaryApi } from '../apis/generation';
+import { makeWorkbookApi, saveQuestionApi, saveSummaryApi } from '../apis/generateApi';
 import { useNavigate } from 'react-router-dom';
 import { getGenerateParams } from '../utils/getParams';
 
@@ -58,11 +58,12 @@ function GenerateCompletePage() {
         }
         try {
             const queryString = getGenerateParams(title, subject, description);
-            const response = await makeWorkbookApi(queryString);
+            const response = await makeWorkbookApi(queryString)
+            console.log(response);
             const workbookId = response.data.id;
             await saveQuestionApi(workbookId, JSON.stringify(mockProblem));
             await saveSummaryApi(workbookId, JSON.stringify(generateSummary));
-            navigate('workbook/' + workbookId);
+            navigate('/workbook/' + workbookId);
             setIsPending(false);
         } catch(e) {
             alert("문제 저장 중 오류가 발생하였습니다. 다시 시도해주세요.");

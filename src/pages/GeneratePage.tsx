@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CloudArrowUpIcon } from '@heroicons/react/24/solid';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
-import { makeQuestionApi, makeSummary, uploadFile } from '../apis/generation';
+import { makeQuestionApi, makeSummary, uploadFile } from '../apis/generateApi';
 
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
