@@ -32,6 +32,7 @@ function GenerateCompletePage() {
     const [title, setTitle] = useState('');
     const [subject, setSubject] = useState('');
     const [description, setDescription] = useState('');
+    const [imgUrl, setImgUrl] = useState('');
     const [isPending, setIsPending] = useState(false);
 
     const navigate = useNavigate();
@@ -56,8 +57,13 @@ function GenerateCompletePage() {
             setIsPending(false);
             return;
         }
+        if (imgUrl == '') {
+            alert("표지 이미지 URL을 입력하세요.");
+            setIsPending(false);
+            return;
+        }
         try {
-            const queryString = getGenerateParams(title, subject, description);
+            const queryString = getGenerateParams(title, subject, description, imgUrl);
             const response = await makeWorkbookApi(queryString)
             console.log(response);
             const workbookId = response.data.id;
@@ -91,7 +97,7 @@ function GenerateCompletePage() {
                                 className="w-1/2 border-b border-gray-900 px-1"
                             />
                         </div>
-                        <div className="flex flex-row text-base">
+                        <div className="flex flex-row text-base mb-2">
                             <label htmlFor="subject" className="mr-3">
                                 과목:
                             </label>
@@ -112,6 +118,19 @@ function GenerateCompletePage() {
                                 type="text"
                                 value={description}
                                 onChange={e => setDescription(e.target.value)}
+                                className="w-1/2 border-b border-gray-900 px-1"
+                            />
+                        </div>
+                        <div className="flex flex-row text-base">
+                            <label htmlFor="imgUrl" className="mr-3">
+                                표지 이미지 URL:
+                            </label>
+                            <input
+                                id="imgUrl"
+                                name="imgUrl"
+                                type="text"
+                                value={imgUrl}
+                                onChange={e => setImgUrl(e.target.value)}
                                 className="w-1/2 border-b border-gray-900 px-1"
                             />
                         </div>

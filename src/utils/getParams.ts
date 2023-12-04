@@ -9,11 +9,12 @@ function getParams (searchType: string | null, searchKeyword: string | null) {
     return qs.stringify(query, { arrayFormat: 'repeat' });
 }
 
-function getGenerateParams (workbookTitle: string, workbookSubject: string, workbookDescription: string) {
+function getGenerateParams (workbookTitle: string, workbookSubject: string, workbookDescription: string, workbookImgUrl: string) {
     const query = {
         title: workbookTitle,
         subject: workbookSubject,
         description: workbookDescription,
+        imgurl: workbookImgUrl
     };
 
     return qs.stringify(query, { arrayFormat: 'repeat' });
