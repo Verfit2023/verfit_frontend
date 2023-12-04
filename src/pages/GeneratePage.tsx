@@ -88,6 +88,7 @@ function GeneratePage() {
         localStorage.setItem('generateProblems', JSON.stringify(response2.data.content));
         localStorage.setItem('generateSummary', JSON.stringify(response3.data.content));
         setIsPending(false);
+        navigate('/generate/complete')
     } catch(e) {
         alert("문제 생성 중 오류가 발생하였습니다. 다시 시도해주세요.");
         setIsPending(false);
