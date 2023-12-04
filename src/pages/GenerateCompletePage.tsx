@@ -75,7 +75,7 @@ function GenerateCompletePage() {
         <div className="flex flex-col min-h-full">
             <Header />
             <div className="w-3/4 mx-auto">
-                <div className="text-xl font-medium leading-6 text-gray-900 mt-6">문제집</div>
+                <div className="text-xl font-medium leading-6 text-gray-900 mt-6">문제집 저장</div>
                 <div className="flex flex-row items-center mt-10 py-4 my-7 border-y border-gray-200">
                     <div className="font-medium w-3/4">
                         <div className="flex flex-row text-lg w-full mb-2">
