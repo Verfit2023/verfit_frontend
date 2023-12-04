@@ -5,7 +5,18 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useUserStore } from '../stores/userStore';
 
 function SideBar(props: {open: boolean, setOpen: (value: boolean) => void}) {
-    const { isLoggedIn, nickname } = useUserStore(state => ({ isLoggedIn: state.isLoggedInStore, nickname: state.nicknameStore }));
+    const { isLoggedIn, nickname, setIsLoggedIn, setNickname } = 
+        useUserStore(state => ({ 
+            isLoggedIn: state.isLoggedInStore, 
+            nickname: state.nicknameStore, 
+            setIsLoggedIn: state.setIsLoggedInStore, 
+            setNickname: state.setNicknameStore 
+        }));
+
+    const onSignOutClick = () => {
+        setIsLoggedIn(false);
+        setNickname('');
+    }
 
   return (
     <Transition.Root show={props.open} as={Fragment}>
@@ -75,9 +86,9 @@ function SideBar(props: {open: boolean, setOpen: (value: boolean) => void}) {
                                     <div className="my-7 font-semibold text-xl text-sky-500">
                                         <Link to="/mypage">{nickname}</Link>
                                     </div>
-                                    <div className="my-7 font-semibold text-xl text-black">
-                                        <Link to="/">Sign out</Link>
-                                    </div>
+                                    <button onClick={onSignOutClick} className="my-7 font-semibold text-xl text-black">
+                                        Sign out
+                                    </button>
                                 </>
                             ) : (
                                 <div className="my-7 font-semibold text-xl text-black">

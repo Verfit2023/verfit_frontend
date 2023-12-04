@@ -8,26 +8,6 @@ import RecentViewBanner from "../components/RecentViewBanner";
 import { searchWorkbookApi } from '../apis/searchApi';
 import { getParams } from '../utils/getParams';
 
-const mockImg = "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fwww.bookmouse.co.kr%2Fshopimages%2Fbookmouse%2F338002000229.jpg%3F1495377842&type=sc960_832";
-
-const mockProblemSets = [
-    { id: 1, title: "재료 공학 midterm 대비", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2022-10-15T12:00:00Z" },
-    { id: 2, title: "알고리즘 분석", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-10-15T12:00:00Z" },
-    { id: 3, title: "컴퓨터 네트워크", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-10-20T12:00:00Z" },
-    { id: 4, title: "시스템 프로그래밍", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-2T12:00:00Z" },
-    { id: 5, title: "컴퓨터 구조론", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-10T12:00:00Z" },
-    { id: 6, title: "선대", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-17T12:00:00Z" },
-    { id: 7, title: "확률과 통계", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T12:00:00Z" },
-    { id: 8, title: "이산구조", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:00:00Z" },
-    { id: 9, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    { id: 10, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    { id: 11, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    { id: 12, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    { id: 13, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    { id: 14, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-    { id: 15, title: "오토마타 기말", description: "Introduction to Algorithms CH1-CH3", img: mockImg, createdAt: "2023-11-18T14:20:00Z" },
-];
-
 function WorkbookPage() {
     const [searchParams] = useSearchParams();
     const [data, setData] = useState([]);
@@ -71,7 +51,7 @@ function WorkbookPage() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full lg:w-3/4 mb-7">
-                        {mockProblemSets.map((problemSet) => (
+                        {data.map((problemSet) => (
                             <Workbook data={problemSet} />
                         ))}
                     </div>

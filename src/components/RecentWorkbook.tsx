@@ -24,7 +24,7 @@ function RecentWorkbook(props: { data: DataType }) {
             onClick={onWorkbookClick}
             className="flex flex-col items-center space-x-2 hover:border hover:border-gray-300"
         >
-            <img src={props.data.img} className="h-auto" />
+            <img src={props.data.img} className="w-24" />
             <div className="font-regular text-base self-start">
                 {props.data.title.length > 10 ? props.data.title.slice(0, 10) + '...' : props.data.title}
             </div>

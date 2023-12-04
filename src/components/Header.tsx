@@ -7,7 +7,18 @@ import SideBar from './SideBar';
 
 const Header = () => {
     const [open, setOpen] = useState(false);
-    const { isLoggedIn, nickname } = useUserStore(state => ({ isLoggedIn: state.isLoggedInStore, nickname: state.nicknameStore }));
+    const { isLoggedIn, nickname, setIsLoggedIn, setNickname } = 
+        useUserStore(state => ({ 
+            isLoggedIn: state.isLoggedInStore, 
+            nickname: state.nicknameStore, 
+            setIsLoggedIn: state.setIsLoggedInStore, 
+            setNickname: state.setNicknameStore 
+        }));
+
+    const onSignOutClick = () => {
+        setIsLoggedIn(false);
+        setNickname('');
+    }
   
     return (
         <div className="sticky top-0 w-3/4 mx-auto py-4 flex justify-between items-center bg-white">
@@ -32,9 +43,9 @@ const Header = () => {
                         <div className="font-semibold text-base text-sky-500">
                             <Link to="/mypage">{nickname}</Link>
                         </div>
-                        <div className="font-semibold text-base text-black">
-                            <Link to="/">Sign out</Link>
-                        </div>
+                        <button onClick={onSignOutClick} className="font-semibold text-base text-black">
+                            Sign out
+                        </button>
                     </>
                 ) : (
                     <div className="font-semibold text-base text-black">
