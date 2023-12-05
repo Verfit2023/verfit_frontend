@@ -41,7 +41,7 @@ function WorkbookPage() {
                 </div>
             </div>
             <div className="w-3/4 h-px bg-gray-200 mt-2 mb-7 mx-auto" />
-            <div className="flex flex-row w-3/4 mx-auto">
+            <div className="flex flex-row w-3/4 mx-auto mb-7">
                 {data.length == 0 ? (
                     <div className="w-full lg:w-3/4 mb-7">
                         문제집을 찾을 수 없습니다.{' '}
@@ -50,7 +50,7 @@ function WorkbookPage() {
                         </a>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full lg:w-3/4 mb-7">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full lg:w-3/4 mb-auto">
                         {data.map((problemSet) => (
                             <Workbook data={problemSet} />
                         ))}

@@ -10,6 +10,10 @@ async function likeWorkbookApi(workbookId: number) {
     return await apiPost(BASE_URL + '/' + workbookId + '/like', {});
 }
 
+async function pubprivWorkbookApi(workbookId: number) {
+    return await apiPost(BASE_URL + '/' + workbookId + '/pubpriv', {});
+}
+
 async function addCommentApi(workbookId: number, comment: string) {
     return await apiPost(BASE_URL + '/' + workbookId + '/addcomment?' + comment, {})
 }
@@ -17,5 +21,6 @@ async function addCommentApi(workbookId: number, comment: string) {
 export {
     getWorkbookApi,
     likeWorkbookApi,
+    pubprivWorkbookApi,
     addCommentApi,
 }

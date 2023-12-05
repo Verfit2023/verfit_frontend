@@ -3,8 +3,8 @@ import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import Problem from '../components/Problem';
 import Comment from '../components/Comment';
-import { BookmarkIcon, PaperAirplaneIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
-import { addCommentApi, getWorkbookApi, likeWorkbookApi } from '../apis/workbookApi';
+import { BookmarkIcon, PaperAirplaneIcon, ChatBubbleBottomCenterTextIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { addCommentApi, getWorkbookApi, likeWorkbookApi, pubprivWorkbookApi } from '../apis/workbookApi';
 import { getCommentParams } from '../utils/getParams';
 
 function WorkbookDetailPage() {
@@ -15,6 +15,7 @@ function WorkbookDetailPage() {
     const [problems, setProblems] = useState([]);
     const [summary, setSummary] = useState('');
     const [isOwner, setIsOwner] = useState(false);
+    const [isPub, setIsPub] = useState(false);
     const [isFav, setIsFav] = useState(false);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
@@ -37,6 +38,7 @@ function WorkbookDetailPage() {
             setIsOwner(response.data.isOwner);
             setIsFav(response.data.isFav);
             setComments(data.comments);
+            setIsPub(data.pubpriv);
         } catch (e) {
             alert("정보를 가져올 수 없습니다.");
         }
@@ -49,6 +51,11 @@ function WorkbookDetailPage() {
     const onLikeClick = async () => {
         await likeWorkbookApi(parseInt(id));
         setIsFav(!isFav);
+    }
+
+    const onPubPrivClick = async () => {
+        await pubprivWorkbookApi(parseInt(id));
+        setIsPub(!isPub);
     }
 
     const onSendCommentClick = async () => {
@@ -75,9 +82,20 @@ function WorkbookDetailPage() {
                             <span>생성일: {createdAt}</span>
                         </div>
                     </div>
-                    <button onClick={onLikeClick} className="ml-auto mr-0 px-4 py-2">
-                        <BookmarkIcon className={`h-6 w-6 ${isFav? 'fill-sky-500' : 'fill-white'}`} />
-                    </button>
+                    <div className="flex flex-row ml-auto mr-0 gap-2">
+                        {isOwner && (
+                            <button onClick={onPubPrivClick} className="px-4 py-2">
+                                {isPub ? (
+                                    <EyeIcon className="h-6 w-6 fill-white" />
+                                ) : (
+                                    <EyeSlashIcon className="h-6 w-6 fill-white" />
+                                )}
+                            </button>
+                        )}
+                        <button onClick={onLikeClick} className="px-4 py-2">
+                            <BookmarkIcon className={`h-6 w-6 ${isFav? 'fill-sky-500' : 'fill-white'}`} />
+                        </button>
+                    </div>
                 </div>
                 {summary}
                 {problems.map((x) => (
