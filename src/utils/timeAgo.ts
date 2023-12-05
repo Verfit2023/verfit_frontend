@@ -1,5 +1,5 @@
 function timeAgo(dateTime: string) {
-    const seconds = Math.floor(((new Date().getTime() + 9 * 60 * 60 * 1000) - new Date(dateTime).getTime()) / 1000);
+    const seconds = Math.floor(((new Date().getTime()) - new Date(dateTime).getTime()) / 1000);
 
     const intervals = {
         년: 31536000,

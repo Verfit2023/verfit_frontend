@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import Problem from '../components/Problem';
-import { BookmarkIcon } from '@heroicons/react/24/outline';
-import { getWorkbookApi, likeWorkbookApi } from '../apis/workbookApi';
+import Comment from '../components/Comment';
+import { BookmarkIcon, PaperAirplaneIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
+import { addCommentApi, getWorkbookApi, likeWorkbookApi } from '../apis/workbookApi';
+import { getCommentParams } from '../utils/getParams';
 
 function WorkbookDetailPage() {
     const [title, setTitle] = useState('');
@@ -14,6 +16,8 @@ function WorkbookDetailPage() {
     const [summary, setSummary] = useState('');
     const [isOwner, setIsOwner] = useState(false);
     const [isFav, setIsFav] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [comment, setComment] = useState('');
 
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
@@ -32,6 +36,7 @@ function WorkbookDetailPage() {
             setSummary(summary);
             setIsOwner(response.data.isOwner);
             setIsFav(response.data.isFav);
+            setComments(data.comments);
         } catch (e) {
             alert("정보를 가져올 수 없습니다.");
         }
@@ -44,6 +49,15 @@ function WorkbookDetailPage() {
     const onLikeClick = async () => {
         await likeWorkbookApi(parseInt(id));
         setIsFav(!isFav);
+    }
+
+    const onSendCommentClick = async () => {
+        if (comment == '') {
+            alert("댓글을 작성해주세요");
+            return;
+        }
+        const response = await addCommentApi(parseInt(id), getCommentParams(comment));
+        setComments(response.data.comments);
     }
 
 
@@ -69,6 +83,27 @@ function WorkbookDetailPage() {
                 {problems.map((x) => (
                     <Problem data={x} />
                 ))}
+            </div>
+            <div className="w-3/4 mx-auto">
+                <div className="h-px w-full bg-gray-200 mb-7" />
+                {comments.map((c) => (
+                    <Comment data={c} />
+                ))}
+                <div className="flex flex-row w-full mb-20 mt-10 items-center">
+                    <ChatBubbleBottomCenterTextIcon className="w-7 h-7 mr-5" />
+                    <textarea
+                        id="comment"
+                        name="comment"
+                        rows={3}
+                        placeholder='Add comment'
+                        className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2sm:text-sm sm:leading-6"
+                        value={comment}
+                        onChange={e => setComment(e.target.value)}
+                    />
+                    <button onClick={onSendCommentClick} className="ml-5">
+                        <PaperAirplaneIcon className="w-7 h-7" />
+                    </button>
+                </div>
             </div>
         </div>
     );

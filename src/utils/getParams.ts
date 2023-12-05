@@ -20,4 +20,12 @@ function getGenerateParams (workbookTitle: string, workbookSubject: string, work
     return qs.stringify(query, { arrayFormat: 'repeat' });
 }
 
-export { getParams, getGenerateParams };
+function getCommentParams (workbookComment: string) {
+    const query = {
+        comment: workbookComment,
+    };
+
+    return qs.stringify(query, { arrayFormat: 'repeat' });
+}
+
+export { getParams, getGenerateParams, getCommentParams };
