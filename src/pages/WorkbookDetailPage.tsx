@@ -6,6 +6,8 @@ import Comment from '../components/Comment';
 import { BookmarkIcon, PaperAirplaneIcon, ChatBubbleBottomCenterTextIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { addCommentApi, getWorkbookApi, likeWorkbookApi, pubprivWorkbookApi } from '../apis/workbookApi';
 import { getCommentParams } from '../utils/getParams';
+import PdfDownloader from '../components/PdfDownloader';
+import LineBreak from '../components/LineBreak';
 
 function WorkbookDetailPage() {
     const [title, setTitle] = useState('');
@@ -31,7 +33,7 @@ function WorkbookDetailPage() {
             setSubject(data.subject);
             setDescription(data.description);
             setCreatedAt(data.created_at.slice(0, 10));
-            const problems = JSON.parse(data.problems[0][1].text).problems;
+            const problems = JSON.parse(data.problems[0][1].text);
             setProblems(problems);
             const summary = JSON.parse(data.summaries[0].text);
             setSummary(summary);
@@ -65,6 +67,7 @@ function WorkbookDetailPage() {
         }
         const response = await addCommentApi(parseInt(id), getCommentParams(comment));
         setComments(response.data.comments);
+        setComment('');
     }
 
 
@@ -82,9 +85,9 @@ function WorkbookDetailPage() {
                             <span>생성일: {createdAt}</span>
                         </div>
                     </div>
-                    <div className="flex flex-row ml-auto mr-0 gap-2">
+                    <div className="flex flex-row ml-auto mr-0 gap-3">
                         {isOwner && (
-                            <button onClick={onPubPrivClick} className="px-4 py-2">
+                            <button onClick={onPubPrivClick} className="p-1">
                                 {isPub ? (
                                     <EyeIcon className="h-6 w-6 fill-white" />
                                 ) : (
@@ -92,12 +95,15 @@ function WorkbookDetailPage() {
                                 )}
                             </button>
                         )}
-                        <button onClick={onLikeClick} className="px-4 py-2">
+                        <PdfDownloader id={parseInt(id)} />
+                        <button onClick={onLikeClick} className="p-1">
                             <BookmarkIcon className={`h-6 w-6 ${isFav? 'fill-sky-500' : 'fill-white'}`} />
                         </button>
                     </div>
                 </div>
-                {summary}
+                <div className="font-regular text-base">
+                    <LineBreak text={summary} />
+                </div>
                 {problems.map((x) => (
                     <Problem data={x} />
                 ))}

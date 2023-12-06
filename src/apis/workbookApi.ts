@@ -18,9 +18,14 @@ async function addCommentApi(workbookId: number, comment: string) {
     return await apiPost(BASE_URL + '/' + workbookId + '/addcomment?' + comment, {})
 }
 
+async function generatePdfApi(workbookId: number) {
+    return await apiPost(BASE_URL + '/' + workbookId + '/generate-pdf', {})
+}
+
 export {
     getWorkbookApi,
     likeWorkbookApi,
     pubprivWorkbookApi,
     addCommentApi,
+    generatePdfApi,
 }
