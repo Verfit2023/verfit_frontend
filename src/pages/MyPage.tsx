@@ -100,7 +100,7 @@ function MyPage() {
                         <div className="text-2xl font-semibold">내가 만든 문제집</div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full lg:w-3/4 mb-7">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full mb-7">
                         {madeWorkbooks.map((problemSet) => (
                             <Workbook data={problemSet} />
                         ))}
@@ -113,7 +113,7 @@ function MyPage() {
                         <div className="text-2xl font-semibold">북마크한 문제집</div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full lg:w-3/4 mb-7">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-full mb-7">
                         {favWorkbooks.map((problemSet) => (
                             <Workbook data={problemSet} />
                         ))}
@@ -128,11 +128,11 @@ function MyPage() {
                         <div className="ml-auto mr-0 flex flex-row items-center justify-between border-gray-200 border rounded-md px-4 py-3 w-40 h-fit">
                             <div className="flex flex-col items-end">
                                 <div className="font-regular text-sm text-gray-400">문제집</div>
-                                <div className="font-semibold text-lg">2</div>
+                                <div className="font-semibold text-lg">{madeWorkbooks.length}</div>
                             </div>
                             <div className="flex flex-col items-end">
                                 <div className="font-regular text-sm text-gray-400">문제 개수</div>
-                                <div className="font-semibold text-lg">15</div>
+                                <div className="font-semibold text-lg">{madeWorkbooks.length * 10}</div>
                             </div>
                         </div>
                     </div>

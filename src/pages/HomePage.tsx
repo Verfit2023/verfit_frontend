@@ -6,7 +6,7 @@ function HomePage() {
     return (
         <div className="flex flex-col min-h-full bg-white">
             <Header />
-            <div className="relative isolate px-6 pt-14 lg:px-8">
+            <div className="relative isolate px-2 sm:px-6 pt-14 lg:px-8">
                 <div
                 className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl"
                 aria-hidden="true"
@@ -21,7 +21,7 @@ function HomePage() {
                 </div>
                 <div className="mx-auto w-3/4 py-32">
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                             Find workbooks you need
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-600">

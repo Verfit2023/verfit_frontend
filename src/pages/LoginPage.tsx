@@ -45,18 +45,24 @@ function LoginPage() {
         }
 
         const response = await loginApi(email, password);
-        if (response.status === 200) {
-            const data = response.data;
-
-            setCookie("accessToken", data.access_token);
-            setNicknameStore(data.nickname);
-            setIsLoggedInStore(true);
-
-            navigate('/');
-        } else {
-            setErrorMsg(response.data.message);
+        try {
+            if (response.status === 200) {
+                const data = response.data;
+    
+                setCookie("accessToken", data.access_token);
+                setNicknameStore(data.nickname);
+                setIsLoggedInStore(true);
+    
+                navigate('/');
+            } else {
+                setErrorMsg(response.data.message);
+                setIsPending(false);
+            }
+        } catch (e) {
+            setErrorMsg("잘못된 이메일 또는 비밀번호입니다.");
             setIsPending(false);
         }
+
     }
 
 
@@ -74,7 +80,7 @@ function LoginPage() {
                 </h3>
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-10 w-4/5 mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-4" action="#" method="POST">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">

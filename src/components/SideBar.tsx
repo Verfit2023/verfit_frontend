@@ -23,7 +23,7 @@ function SideBar(props: {open: boolean, setOpen: (value: boolean) => void}) {
         <Dialog as="div" className="relative z-10" onClose={props.setOpen}>
             <Transition.Child
             as={Fragment}
-            enter="ease-in-out duration-500"
+            enter="ease-in-out duration-z00"
             enterFrom="opacity-0"
             enterTo="opacity-100"
             leave="ease-in-out duration-500"
@@ -35,7 +35,7 @@ function SideBar(props: {open: boolean, setOpen: (value: boolean) => void}) {
 
             <div className="fixed inset-0 overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
-                <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-40">
                 <Transition.Child
                     as={Fragment}
                     enter="transform transition ease-in-out duration-500 sm:duration-700"

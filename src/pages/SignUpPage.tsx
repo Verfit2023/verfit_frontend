@@ -91,7 +91,7 @@ function SignupPage() {
                 </h3>
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-10 w-4/5 mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-4" action="#" method="POST">
                     <div>
                         <label htmlFor="nickname" className="block text-sm font-medium leading-6 text-gray-900">
