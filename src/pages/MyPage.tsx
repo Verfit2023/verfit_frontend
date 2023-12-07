@@ -4,6 +4,7 @@ import { BookOpenIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import Workbook from "../components/Workbook";
 import { getMypageApi } from '../apis/mypageApi';
 import { ResponsiveRadar } from '@nivo/radar'
+import { Link } from 'react-router-dom';
 
 function MyPage() {
     const [nickname, setNickname] = useState('');
@@ -44,7 +45,7 @@ function MyPage() {
                 data={transformedList}
                 keys={['You']}
                 indexBy="key"
-                maxValue={3}
+                maxValue={15}
                 margin={{ top: 20, right: 60, bottom: 30, left: 90 }}
                 borderColor={{ from: 'color' }}
                 gridLabelOffset={10}
@@ -122,7 +123,9 @@ function MyPage() {
                 <div className="hidden lg:flex lg:w-1/4">
                     <div className="flex flex-col w-full ml-3">
                         <div className="w-64 h-64 ml-auto mr-0">
-                            <MyResponsiveRadar data={abilityScore} />
+                            <Link to='/ability-test'>
+                                <MyResponsiveRadar data={abilityScore} />
+                            </Link>
                         </div>
                         
                         <div className="ml-auto mr-0 flex flex-row items-center justify-between border-gray-200 border rounded-md px-4 py-3 w-40 h-fit">

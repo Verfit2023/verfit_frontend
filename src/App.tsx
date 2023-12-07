@@ -8,6 +8,7 @@ import GeneratePage from './pages/GeneratePage';
 import WorkbookPage from './pages/WorkbookPage';
 import WorkbookDetailPage from './pages/WorkbookDetailPage';
 import GenerateCompletePage from './pages/GenerateCompletePage';
+import AbilityTestPage from './pages/AbilityTestPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/generate/complete' element={<GenerateCompletePage />} />
           <Route path='/workbook' element={<WorkbookPage />} />
           <Route path='/workbook/:id' element={<WorkbookDetailPage />} />
+          <Route path='/ability-test' element={<AbilityTestPage />} />
         </Routes>
       </BrowserRouter>
     </div>
